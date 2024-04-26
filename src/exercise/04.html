@@ -17,24 +17,24 @@
         <div className="message">Goodbye World</div>
       </div>
     )
-    const renderMessage = ({children,index})=>{
-      return <div className='message' key={index}>{children}</div>
-    }
+    // const renderMessage = ({children})=>{
+    //   return children;
+    // }
 
-    const messages = ['Hey Manish', 'Hey Arpit'];
+    const messages = [{msg:'Hey Peter',id:0},{ msg:'Hey Luke',id:1}];
 
     const element2 = (
       <div className='container'>
         {
-          messages.map((message,index)=>{
-            return renderMessage({children:message,index})
+          messages.map((message)=>{
+            return <div className='message' key={message.id}>{message.msg}</div>
           })
         }
       </div>
     )
-    const elem3 = Reacr.createElement('div',{className:'container'})
+    const elem3 = React.createElement('div',{className:'container'})
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
-    ReactDOM.createRoot(document.getElementById('root')).render([element,element2])
+    ReactDOM.createRoot(document.getElementById('root')).render(element2)
   </script>
 </body>
