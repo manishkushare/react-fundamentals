@@ -9,7 +9,8 @@
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   -->
-
+  <script src="https://unpkg.com/react@18.1.0/umd/react.development.js" defer></script>
+  <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js" defer></script>
   <script type="module">
     const rootElement = document.getElementById('root')
 
@@ -23,6 +24,20 @@
     rootElement.append(element)
 
     // 🐨 Please re-implement the regular document.createElement code above
+    const elemProps = {className:'container',children :'Hello Manish',style:{color:'green'}};
+    const elementType = 'div';
+    const elem = React.createElement(elementType,elemProps);
+    
+    const firstChild = React.createElement('span',{children:'Namaste',style:{display:'block'}});
+    const secondChild = React.createElement('span',{children:'Manish',style:{display:'block'}})
+    const customDiv = React.createElement('div',
+        {className:'custom-container',style:{padding:'20px',height:'100px',width:'100px',background:'green'}},
+        [firstChild,secondChild]
+    )
+
+
+    const root = ReactDOM.createRoot(rootElement);
+    root.render([elem,customDiv]);
     // with these React API calls
     // 💰 The example in the markdown file should be a good hint for you.
   </script>
