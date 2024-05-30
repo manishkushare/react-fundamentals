@@ -8,33 +8,39 @@
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
-
+function Message({greeting,subject}){
+  return <div className='message'>{greeting} , {subject}</div>
+}
+console.log('manish ::',{Message})
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
     const element = (
       <div className="container">
-        <div className="message">Hello World</div>
-        <div className="message">Goodbye World</div>
+        <Message greeting="Hello" subject="World"/>
       </div>
     )
-    // const renderMessage = ({children})=>{
-    //   return children;
-    // }
 
     const messages = [{msg:'Hey Peter',id:0},{ msg:'Hey Luke',id:1}];
 
-    const element2 = (
-      <div className='container'>
-        {
-          messages.map((message)=>{
-            return <div className='message' key={message.id}>{message.msg}</div>
-          })
-        }
-      </div>
-    )
-    const elem3 = React.createElement('div',{className:'container'})
+    const Element2 = ()=>{
+      return (
+        <div className='container'>
+          {
+            messages.map((message)=>{
+              return <div className='message' key={message.id}>{message.msg}</div>
+            })
+          }
+        </div>
+      )
+    };
+
+    //extra credit 1
+    const ReactElemn = ({child})=>{
+      return <div className='message'>{child}</div>
+    }
+    const elem3 = React.createElement(ReactElemn,{child: 'Hello World'})
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
-    ReactDOM.createRoot(document.getElementById('root')).render(element2)
+    ReactDOM.createRoot(document.getElementById('root')).render(element)
   </script>
 </body>

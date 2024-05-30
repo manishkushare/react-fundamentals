@@ -5,6 +5,31 @@ import * as React from 'react'
 
 function UsernameForm({onSubmitUsername}) {
   // 🐨 add a submit event handler here (`handleSubmit`).
+
+  // const [error,setError] = React.useState('');
+  const [inputVal, setInputVal] = React.useState('')
+
+  const inputRef = React.useRef(null);
+  const handleSubmit = (event)=>{
+    // console.log('manish ::',{inputRef});
+    // event.preventDefault();
+    // // const value = event.target.elements[0].value?? 'Manish';
+    // const value = inputRef.current.value || 'Manish';
+    onSubmitUsername(inputVal)
+  }
+  const handleChange = ()=>{
+    const value = inputRef.current.value;
+    const isValidValue = value === value.toLowerCase();
+    // if(!isValidValue) {
+    //   setError('Please enter only lower case letters')
+    // }else if(isValidValue && error){
+    //   setError('');
+    // }
+    if(isValidValue){
+      setInputVal(value);
+    }
+
+  }
   // 💰 Make sure to accept the `event` as an argument and call
   // `event.preventDefault()` to prevent the default behavior of form submit
   // events (which refreshes the page).
@@ -20,12 +45,15 @@ function UsernameForm({onSubmitUsername}) {
   // 🐨 make sure to associate the label to the input.
   // to do so, set the value of 'htmlFor' prop of the label to the id of input
   return (
-    <form>
+    <form  
+      onSubmit={handleSubmit}
+    >
       <div>
         <label>Username:</label>
-        <input type="text" />
+        <input onChange={handleChange} ref={inputRef} type="text" value={inputVal}/>
       </div>
-      <button type="submit">Submit</button>
+      
+      <button type="submit" >Submit</button>
     </form>
   )
 }
